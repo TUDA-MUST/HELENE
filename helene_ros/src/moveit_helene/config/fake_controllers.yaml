@@ -1,0 +1,12 @@
+controller_list:
+  - name: fake_helene_arm_controller
+    joints:
+      - q1
+      - q2
+      - q3
+      - q4
+      - q5
+      - q6
+initial:  # Define initial robot poses.
+  - group: helene_arm
+    pose: straight

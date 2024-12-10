@@ -1,0 +1,20 @@
+<robot name="helene" xmlns:xacro="http://www.ros.org/wiki/xacro" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+<!-- Definition of Pi for easier rotation of end effectors -->
+<xacro:property name="PI" value="3.1415926535897931"/>
+
+<xacro:arg name="end_effector" default=""/>
+<xacro:arg name="end_effector_package" default="$(arg end_effector)"/>
+
+<xacro:property name="end_effector_name" value="$(arg end_effector)"/>
+<xacro:property name="package" value="$(arg end_effector_package)"/>
+
+<!-- helene urdf file -->
+<xacro:include filename="$(find hw_description)/urdf/helene_hw.urdf"/>
+
+<!-- end effector xacro file -->
+<xacro:unless value="${end_effector_name == ''}">
+    <xacro:include filename="$(find ${end_effector_name})/urdf/${end_effector_name}.urdf.xacro"/>
+</xacro:unless>
+
+</robot>

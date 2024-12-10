@@ -1,0 +1,22 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <joint name="needle_joint" type="fixed">
+        <parent link="axis_5"/>
+        <child link="eef_link"/>
+        <origin xyz="0 0 0.0501" rpy="0 0 ${PI / 2}"/>
+    </joint>
+
+    <link name="eef_link">
+        <visual>
+            <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.02"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0.05" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.1" radius="0.02"/>
+            </geometry>
+        </collision>
+    </link>
+</robot>

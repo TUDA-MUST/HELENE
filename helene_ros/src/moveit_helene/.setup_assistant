@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: hw_description
+    relative_path: urdf/helene_hw.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/helene.srdf
+  CONFIG:
+    author_name: Felix
+    author_email: felix@todo.todo
+    generated_timestamp: 1597059037

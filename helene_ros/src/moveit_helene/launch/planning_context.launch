@@ -1,0 +1,30 @@
+<launch>
+  <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
+  <arg name="load_robot_description" default="false"/>
+  <arg name="end_effector" default=""/>
+  <arg name="end_effector_package" default=""/>
+
+  <!-- The name of the parameter under which the URDF is loaded -->
+  <arg name="robot_description" default="robot_description"/>
+
+  <!-- Load universal robot description format (URDF) -->
+  <!-- <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find hw_description)/urdf/helene_hw.urdf"/> -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find hw_description)/urdf/helene_with_tool.xacro'
+      end_effector:=$(arg end_effector)
+      end_effector_package:=$(arg end_effector_package)"/>
+
+  <!-- The semantic description that corresponds to the URDF -->
+  <param name="$(arg robot_description)_semantic" textfile="$(find moveit_helene)/config/helene.srdf" />
+
+  <!-- Load updated joint limits (override information from URDF) -->
+  <group ns="$(arg robot_description)_planning">
+    <rosparam command="load" file="$(find moveit_helene)/config/joint_limits.yaml"/>
+  </group>
+
+  <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
+  <group ns="$(arg robot_description)_kinematics">
+    <rosparam command="load" file="$(find moveit_helene)/config/kinematics.yaml"/>
+
+  </group>
+
+</launch>

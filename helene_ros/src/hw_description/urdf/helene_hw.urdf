@@ -1,0 +1,354 @@
+<?xml version="1.0" ?>
+<robot name="helene">
+    <link name="world" />
+
+  <joint name="world_to_base_link" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="gold">
+                <color rgba="1 0.549 0 1" />
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente1.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        
+<inertial>
+            <mass value="0.8" />
+            <inertia ixx="1e-3" ixy="1e-3" ixz="1e-3" iyy="1e-3" iyz="1e-3" izz="1e-3" />
+        </inertial>
+
+    </link>
+    <link name="axis_0">
+        <visual>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="gold">
+                <color rgba="1 0.549 0 1" />
+            </material>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente2.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        
+<inertial>
+            <mass value="0.8" />
+            <inertia ixx="1e-3" ixy="1e-3" ixz="1e-3" iyy="1e-3" iyz="1e-3" izz="1e-3" />
+        </inertial>
+
+    </link>
+    <joint name="q1" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" lower="-2.79" upper="2.79" velocity="5" />
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <parent link="base_link" />
+        <child link="axis_0" />
+    </joint>
+    <link name="axis_1">
+        <visual>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="gold">
+                <color rgba="1 0.549 0 1" />
+            </material>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente3.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        
+<inertial>
+            <mass value="0.8" />
+            <inertia ixx="1e-3" ixy="1e-3" ixz="1e-3" iyy="1e-3" iyz="1e-3" izz="1e-3" />
+        </inertial>
+
+    </link>
+    <joint name="q2" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" lower="-1.83" upper="1.83" velocity="5" />
+        <origin rpy="-1.571 0 0" xyz="0.02 0 0.145" />
+        <parent link="axis_0" />
+        <child link="axis_1" />
+    </joint>
+    <link name="axis_2">
+        <visual>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="gold">
+                <color rgba="1 0.549 0 1" />
+            </material>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente4.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        
+<inertial>
+            <mass value="0.8" />
+            <inertia ixx="1e-3" ixy="1e-3" ixz="1e-3" iyy="1e-3" iyz="1e-3" izz="1e-3" />
+        </inertial>
+
+    </link>
+    <joint name="q3" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" lower="0" upper="2.7925" velocity="5" />
+        <origin rpy="0 0 3.141" xyz="0 -0.200 0" />
+        <parent link="axis_1" />
+        <child link="axis_2" />
+    </joint>
+    <link name="axis_3">
+        <visual>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="gold">
+                <color rgba="1 0.549 0 1" />
+            </material>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente5.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        
+<inertial>
+            <mass value="0.8" />
+            <inertia ixx="1e-3" ixy="1e-3" ixz="1e-3" iyy="1e-3" iyz="1e-3" izz="1e-3" />
+        </inertial>
+
+    </link>
+    <joint name="q4" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" lower="-2.9" upper="2.9" velocity="5" />
+        <origin rpy="-1.571 0 0" xyz="0 0 0" />
+        <parent link="axis_2" />
+        <child link="axis_3" />
+    </joint>
+    <link name="axis_4">
+        <visual>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="gold">
+                <color rgba="1 0.549 0 1" />
+            </material>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Komponente6.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        
+<inertial>
+            <mass value="0.8" />
+            <inertia ixx="1e-3" ixy="1e-3" ixz="1e-3" iyy="1e-3" iyz="1e-3" izz="1e-3" />
+        </inertial>
+
+    </link>
+    <joint name="q5" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" lower="-2.7" upper="2.7" velocity="5" />
+        <origin rpy="1.571 0 0" xyz="0 0 0.177" />
+        <parent link="axis_3" />
+        <child link="axis_4" />
+    </joint>
+    <link name="axis_5">
+        <visual>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Flansch.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="gold">
+                <color rgba="1 0.549 0 1" />
+            </material>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://hw_description/meshes/Flansch.stl" scale="0.001 0.001 0.001" />
+            </geometry>
+        </collision>
+        
+<inertial>
+            <mass value="0.8" />
+            <inertia ixx="1e-3" ixy="1e-3" ixz="1e-3" iyy="1e-3" iyz="1e-3" izz="1e-3" />
+        </inertial>
+
+    </link>
+    <joint name="q6" type="revolute">
+        <axis xyz="0 0 1" />
+        <limit effort="1000.0" lower="-3.141" upper="3.141" velocity="5" />
+        <origin rpy="-1.571 0 0" xyz="0 0 0" />
+        <parent link="axis_4" />
+        <child link="axis_5" />
+    </joint>
+    <link name="axis_6">
+        <visual>
+            <geometry>
+                <cylinder length="0" radius="0" />
+            </geometry>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder length="0" radius="0" />
+            </geometry>
+        </collision>
+    </link>
+    <joint name="q7" type="fixed">
+        <axis xyz="0 0 1" />
+        <origin rpy="0 0 0" xyz="0 0 0.05" />
+        <parent link="axis_5" />
+        <child link="axis_6" />
+    </joint>
+    
+<transmission name="trans_q1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q4_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q5_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q6">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q6">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q6_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/helene</robotNamespace>
+        </plugin>
+    </gazebo>
+    <transmission name="trans_q1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q1">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q1_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q2">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q2_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q3">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q3_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q4">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q4_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q5">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q5_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <transmission name="trans_q6">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="q6">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="q6_motor">
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
+</robot>

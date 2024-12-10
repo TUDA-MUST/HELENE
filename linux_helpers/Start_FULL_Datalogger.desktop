@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Helene FULL DataLog
+Comment=Full DataLog for Helene
+GenericName=Helene FULL DataLog
+Keywords=System;Robotarm;ROS;noetic;Helene
+Exec=bash -c "cd ~/Desktop &>/dev/null; cd ~/Schreibtisch &>/dev/null; source /opt/ros/noetic/setup.bash;source ~/ros_ws/devel/setup.bash;sleep 1;rosrun applications_helene complete_data_logger"
+Terminal=true
+Type=Application
+Icon=Icon_Log_Everything.png
+Categories=Development;

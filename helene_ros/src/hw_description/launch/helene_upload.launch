@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+   <!-- This lauch file just loads the URDF with the given hardware interface and robot name into the ROS Parameter Server -->
+  <arg name="hardware_interface" default="VelocityJointInterface"/> 
+  <arg name="robot_name" default="helene_arm"/>
+  <arg name="origin_xyz" default="'0 0 0'"/> <!-- Note the syntax to pass a vector -->
+  <arg name="origin_rpy" default="'0 0 0'"/>
+  <arg name="trajectory" default="true"/>
+  <arg name="end_effector" default=""/>
+  <arg name="end_effector_package" default=""/>
+  
+  <!-- <param name="robot_description" textfile="$(find hw_description)/urdf/helene_hw.urdf"/> -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find hw_description)/urdf/helene_with_tool.xacro'
+      end_effector:=$(arg end_effector)
+      end_effector_package:=$(arg end_effector_package)"/>
+</launch> 

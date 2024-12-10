@@ -1,0 +1,45 @@
+helene:
+    joint_state_controller:
+      type: joint_state_controller/JointStateController
+      publish_rate: 50
+    arm_controller:
+        type: effort_controllers/JointTrajectoryController
+        joints:
+          - q1
+          - q2
+          - q3
+          - q4
+          - q5
+          - q6
+
+        gains:
+          q1: {p: 8000, i: 180, d: 160}
+          q2: {p: 70000, i: 800, d: 740}
+          q3: {p: 18000, i: 200, d: 180}
+          q4: {p: 16000, i: 160, d: 140}
+          q5: {p: 10000, i: 80, d: 100}
+          q6: {p: 8000, i: 60, d: 80}
+
+        
+
+    effort_group:
+      type: velocity_controllers/JointGroupVelocityController
+      joints:
+        - q1
+        - q2
+        - q3
+        - q4
+        - q5
+        - q6
+      q1: 
+        pid: {p: 8000, i: 180, d: 160}
+      q2: 
+        pid: {p: 70000, i: 800, d: 740}
+      q3: 
+        pid: {p: 18000, i: 200, d: 180}
+      q4: 
+        pid: {p: 16000, i: 160, d: 140}
+      q5: 
+        pid: {p: 10000, i: 80, d: 100}
+      q6: 
+        pid: {p: 8000, i: 60, d: 80}

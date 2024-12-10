@@ -1,0 +1,41 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <joint name="led_head_joint" type="fixed">
+        <parent link="axis_5"/>
+        <child link="led_head_link"/>
+        <origin xyz="0 0 0.0501" rpy="0 0 0"/>
+    </joint>
+
+    <link name="led_head_link">
+
+    </link>
+
+    <gazebo reference="led_head_link">
+        <light name ='green_light' type = 'point'>
+            <pose>0 0.02 0.06 0 0 0</pose>
+            <attenuation>
+                <range>0.2</range>
+                <linear>0.1</linear>
+                <constant>0.1</constant>
+                <quadratic>0.01</quadratic>
+            </attenuation>
+            <diffuse>0 .1 0 1</diffuse>
+            <specular>0 .1 0 1</specular>
+        </light>
+        <light name ='blue_light' type = 'point'>
+            <pose>0 -0.02 0.06 0 0 0</pose>
+            <attenuation>
+                <range>0.2</range>
+                <linear>0.1</linear>
+                <constant>0.1</constant>
+                <quadratic>0.01</quadratic>
+            </attenuation>
+            <diffuse>0 0 .1 1</diffuse>
+            <specular>0 0 .1 1</specular>
+        </light>
+    </gazebo>
+    <gazebo>
+        <plugin name="led_light_plugin" filename="libled_light_plugin.so">
+        </plugin>
+    </gazebo>
+
+</robot>

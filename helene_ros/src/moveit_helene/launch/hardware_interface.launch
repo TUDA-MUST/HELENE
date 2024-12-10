@@ -1,0 +1,32 @@
+<launch>
+
+  <arg name="hardware_interface" default="VelocityJointInterface" />
+  <arg name="robot_name" default="helene" />
+  <arg name="model" default="standard"/>
+  <arg name="trajectory" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+
+  <group>
+    <include file="$(find hw_description)/launch/helene_upload.launch">
+      <arg name="hardware_interface" value="$(arg hardware_interface)"/>
+      <arg name="robot_name" value="helene" />
+    </include>
+  </group>
+
+  <node name="my_robot_hw_vel" pkg="controller_helene" type="my_robot_hw_vel" output="screen" required="true"/>
+
+  <rosparam file="$(find moveit_helene)/config/ros_controllers.yaml" command="load"/>
+
+ <node name="controller_spawner" pkg="controller_manager" type="spawner"   args="joint_state_controller  /helene/VelocityJointInterface_trajectory_controller"/>
+ <node name="controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="load /helene/effort_group" />
+
+  <!-- Given the published joint states, publish tf for the robot links -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <param name="ignore_timestamp" value="false" />
+    <param name="publish_frequency" value="30.0" />
+    <param name="use_tf_static" value="false" />
+  </node>
+
+</launch>

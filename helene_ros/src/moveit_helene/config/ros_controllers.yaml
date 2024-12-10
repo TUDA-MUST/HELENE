@@ -1,0 +1,102 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+controller_list:
+ - name: /helene/VelocityJointInterface_trajectory_controller
+   action_ns: follow_joint_trajectory
+   default: True
+   type: FollowJointTrajectory
+   joints:
+      - q1
+      - q2
+      - q3
+      - q4
+      - q5
+      - q6
+   velocity_ff:
+      q1: 1.0
+      q2: 1.0
+      q3: 1.0
+      q4: 1.0
+      q5: 1.0
+      q6: 1.0  
+ - name: helene/velocity_group
+   action_ns: follow_joint_trajectory
+   default: True
+   type: FollowJointTrajectory
+   joints:
+      - q1
+      - q2
+      - q3
+      - q4
+      - q5
+      - q6
+
+
+
+# Forward Position Controllers ---------------------------------------
+
+
+# The following is an example configuration of a controller that uses this adapter. Notice the \p gains and \p velocity_ff
+#https://github.com/ros-controls/ros_controllers/blob/melodic-devel/joint_trajectory_controller/include/joint_trajectory_controller/hardware_interface_adapter.h
+#go see  http://wiki.ros.org/joint_trajectory_controller
+#  * entries:
+helene:
+  VelocityJointInterface_trajectory_controller:
+    type: velocity_controllers/JointTrajectoryController
+    joints:
+      - q1
+      - q2
+      - q3
+      - q4
+      - q5
+      - q6
+    gains:
+      q1: {p: 60, i: 5, d: 3, i_clamp: 1}
+      q2: {p: 30, i: 2, d: 0.05, i_clamp: 1}
+      q3: {p: 70, i: 5, d: 3.5, i_clamp: 1}
+      q4: {p: 80, i: 5, d: 8.75, i_clamp: 1}
+      q5: {p: 85, i: 5, d: 6.75, i_clamp: 1}
+      q6: {p: 85, i: 5, d: 6.75, i_clamp: 1}
+    velocity_ff:
+      q1: 1.0
+      q2: 1.0
+      q3: 1.0
+      q4: 1.0
+      q5: 1.0
+      q6: 1.0
+    constraints:
+      goal_time: 5                   
+      stopped_velocity_tolerance: 1
+      q1: {trajectory: 1.0, goal: 1.0}
+      q2: {trajectory: 1.0, goal: 1.0}
+      q3: {trajectory: 1.0, goal: 1.0}
+      q4: {trajectory: 1.0, goal: 1.0}
+      q5: {trajectory: 1.0, goal: 1.0}
+      q6: {trajectory: 1.0, goal: 1.0}
+    state_publish_rate:  50         
+    action_monitor_rate: 20           
+    stop_trajectory_duration: 0.0 
+
+  velocity_group:
+    type: velocity_controllers/JointGroupVelocityController
+    joints:
+      - q1
+      - q2
+      - q3
+      - q4
+      - q5
+      - q6
+    gains:
+      q1: {p: 60, i: 5, d: 3, i_clamp: 1}
+      q2: {p: 30, i: 2, d: 0.05, i_clamp: 1}
+      q3: {p: 70, i: 5, d: 3.5, i_clamp: 1}
+      q4: {p: 80, i: 5, d: 8.75, i_clamp: 1}
+      q5: {p: 85, i: 5, d: 6.75, i_clamp: 1}
+      q6: {p: 85, i: 5, d: 6.75, i_clamp: 1}
+      
+  robot_base: base_link
+  robot_endeffector: axis_6       
+  planning_plugin: ompl_interface/OMPLPlanner
+  planning_adapters: default_planner_request_adapters/AddTimeParameterization default_planner_request_adapters/FixWorkspaceBounds default_planner_request_adapters/FixStartStateBounds default_planner_request_adapters/FixStartStateCollision default_planner_request_adapters/FixStartStatePathConstraints    
+    

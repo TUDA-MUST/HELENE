@@ -1,0 +1,79 @@
+<launch>
+
+  <arg name="use_usb" default="true"/>
+ 
+  <group if="$(arg use_usb)">
+    <node pkg="rosserial_python" type="serial_node.py" name="helene">
+      <param name="port" value="/dev/ttyUSB0"/>
+      <param name="baud" value="1000000"/>
+    </node>
+  </group>
+
+  <arg name="hardware_interface" default="VelocityJointInterface" />
+  <arg name="robot_name" default="helene" />
+  <arg name="model" default="standard"/>
+  <arg name="trajectory" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="end_effector" default=""/>
+  <arg name="end_effector_package" default=""/>
+
+  <group>
+    <include file="$(find hw_description)/launch/helene_upload.launch">
+      <arg name="hardware_interface" value="$(arg hardware_interface)"/>
+      <arg name="robot_name" value="helene" />
+      <arg name="end_effector" value="$(arg end_effector)"/>
+      <arg name="end_effector_package" value="$(arg end_effector_package)"/>
+    </include>
+  </group>
+
+  <node name="my_robot_hw_vel" pkg="controller_helene" type="my_robot_hw_vel" output="screen" required="true"/>
+
+  <rosparam file="$(find moveit_helene)/config/ros_controllers.yaml" command="load"/>
+
+ <node name="controller_spawner" pkg="controller_manager" type="spawner"   args="joint_state_controller  /helene/VelocityJointInterface_trajectory_controller"/>
+ <node name="controller_manager" pkg="controller_manager" type="controller_manager" respawn="false" output="screen" args="load /helene/effort_group" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <param name="ignore_timestamp" value="false" />
+    <param name="publish_frequency" value="30.0" />
+    <param name="use_tf_static" value="false" />
+  </node>
+
+  <arg name="pipeline" default="ompl" />
+
+  <arg name="db" default="false" />
+  <arg name="db_path" default="$(find moveit_helene)/default_warehouse_mongo_db" />
+
+  <arg name="debug" default="false" />
+
+  <arg name="use_gui" default="false" />
+
+  <include file="$(find moveit_helene)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="false"/>
+    <arg name="end_effector" value="$(arg end_effector)"/>
+    <arg name="end_effector_package" value="$(arg end_effector_package)"/>
+  </include>
+
+  <include file="$(find moveit_helene)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="pipeline" value="$(arg pipeline)"/>
+    <arg name="end_effector" value="$(arg end_effector)"/>
+    <arg name="end_effector_package" value="$(arg end_effector_package)"/>
+  </include>
+
+  <include file="$(find moveit_helene)/launch/moveit_rviz.launch">
+    <arg name="rviz_config" value="$(find moveit_helene)/launch/moveit.rviz"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <include file="$(find moveit_helene)/launch/default_warehouse_db.launch" if="$(arg db)">
+    <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
+  </include>
+
+
+</launch>

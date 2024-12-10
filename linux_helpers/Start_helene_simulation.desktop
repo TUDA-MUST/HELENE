@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Simulate Helene
+Comment=Mit dieser Verknuepfung werden alle erforderlichen Nodes zum Benutzen der Simulation um den Helene Roboterarm gestartet
+GenericName=Start simulated Helene
+Keywords=System;Robotarm;ROS;noetic;Helene
+Exec=bash -c "source /opt/ros/noetic/setup.bash;source ~/ros_ws/devel/setup.bash;sleep 1;roslaunch applications_helene simulation.launch"
+Terminal=true
+Type=Application
+Icon=HeleneIconSim.png
+Categories=Development;
