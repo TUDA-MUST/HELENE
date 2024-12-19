@@ -6,7 +6,7 @@ Open the 3D model in your browser: https://a360.co/2XPdhQQ
 
 ## Summary
 This repo contains everything to build and use the low cost robot except the custom electronics, which can be [found in the seperate repo right here](https://github.com/SrSupp/Helene_electronics)
-
+All files and an assembly guide can be found in the hardware_build directory.
 ### Get started
 You can either run the robot itself, or a simulation.
 
